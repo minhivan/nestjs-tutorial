@@ -5,6 +5,9 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
 import { DatabaseModule } from './database/database.module';
+import { TransactionService } from './transaction/transaction.service';
+import { TransactionModule } from './transaction/transaction.module';
+import { UsersService } from "./users/users.service";
 
 // console.log(appConfig);
 @Module({
@@ -16,9 +19,9 @@ import { DatabaseModule } from './database/database.module';
             ],
             envFilePath: ['.env'],
         }),
-        UsersModule, DatabaseModule],
+        UsersModule, DatabaseModule, TransactionModule],
     controllers: [AppController],
-    providers: [AppService]
+    providers: [AppService, TransactionService, UsersService]
 })
 
 export class AppModule {}

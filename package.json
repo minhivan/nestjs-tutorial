@@ -30,11 +30,13 @@
         "@nestjs/typeorm": "^9.0.1",
         "@prisma/client": "^4.8.1",
         "bcryptjs": "^2.4.3",
+        "kafkajs": "^2.2.3",
         "pg": "^8.8.0",
         "reflect-metadata": "^0.1.13",
         "rimraf": "^3.0.2",
         "rxjs": "^7.2.0",
-        "typeorm": "^0.3.11"
+        "typeorm": "^0.3.11",
+        "web3": "^1.8.2"
     },
     "devDependencies": {
         "@nestjs/cli": "^9.0.0",
@@ -76,8 +78,5 @@
         ],
         "coverageDirectory": "../coverage",
         "testEnvironment": "node"
-    },
-    "prisma": {
-        "seed": "ts-node seed.ts"
     }
 }

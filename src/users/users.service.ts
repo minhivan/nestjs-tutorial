@@ -2,19 +2,25 @@ import { Injectable } from '@nestjs/common';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { DatabaseService } from '../database/database.service';
 
+
+interface CreateUserInterface {
+    address: string;
+    email: string;
+}
+
+
 @Injectable()
 export class UsersService {
     constructor(private readonly prismaService: DatabaseService) {}
 
-    async create(body: any) {
+    async create(body: CreateUserInterface) {
         console.log(body);
         const result = await this.prismaService.user.create({
             data: {
-                address: '0xfeFd4C08f6B8e2380a324f4Bc63D26F16085ab23',
-                balance: 10,
+                ...body,
+                balance: 0,
             },
         });
-        console.log(result);
         return result;
     }
 
@@ -30,6 +36,17 @@ export class UsersService {
                 id: Number(id)
             },
         })
+        return user;
+    }
+
+
+    async findUserByAddress(address: string) {
+        const user = await this.prismaService.user.findFirst({
+            where: {
+                address
+            }
+        })
+
         return user;
     }
 
