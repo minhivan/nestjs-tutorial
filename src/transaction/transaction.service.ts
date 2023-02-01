@@ -3,6 +3,7 @@ import { DatabaseService } from '../database/database.service';
 import Web3 from 'web3';
 import {_isERC20Log} from "../common/utils";
 import {UsersService} from "../users/users.service";
+import * as process from "process";
 
 
 interface CreateTransactionTrackingInterface {
@@ -12,7 +13,7 @@ interface CreateTransactionTrackingInterface {
 
 @Injectable()
 export class TransactionService {
-    private web3 = new Web3('wss://bsc-testnet.nodereal.io/ws/v1/37790cc6643f4eababd9e4210712f96c');
+    private web3 = new Web3(process.env.WEB3_PROVIDER);
     constructor(
         private readonly prismaService: DatabaseService,
         private readonly userService: UsersService
